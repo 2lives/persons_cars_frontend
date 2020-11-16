@@ -1,21 +1,19 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FC } from 'react';
 import './App.css';
-import { RootStore } from './store'
-import { getPersons } from './actions/personsAndCarsActions'
 
-function App() {
-  const dispatch = useDispatch()
-  const personsState = useSelector((state: RootStore) => state.persons)
-  // dispatch(getPersons)
-  console.log('personsState:', personsState)
-  const handleClick = () => dispatch(getPersons)
+import PersonsList from './components/personsList'
+import AddPerson from './components/addPerson/addPerson'
+
+
+const App: FC = () => {
   return (
     <div className="App">
-      <p>hi</p>
-      <button onClick={handleClick}>plz</button>
+      <div className="app-container">
+        <h1>People and their Cars</h1>
+        <AddPerson />
+        <PersonsList />
+      </div>
     </div>
-  );
+  )
 }
-
 export default App;

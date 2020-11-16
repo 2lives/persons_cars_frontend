@@ -1,0 +1,13 @@
+.add-person-wrapper {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.MuiInputBase-root {
+    margin-right: 16px
+}
+
+.add-person-button {
+    color: white !important;
+    background-color: skyblue !important;
+}

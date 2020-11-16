@@ -1,0 +1,9 @@
+.cars-tile-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0px 16px 16px;
+}
+
+.delete-button {
+    margin-left: 8px !important;
+}

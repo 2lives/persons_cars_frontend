@@ -1,0 +1,36 @@
+.person-tile-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.MuiTypography-root {
+    text-align: left;
+}
+
+.MuiCardActions-root {
+    padding-right: 16px !important;
+}
+
+.person-card-wrapper {
+    display: flex;
+    justify-content: space-between
+}
+
+.MuiCardActions-root {
+    justify-content: flex-end
+}
+
+.edit-button {
+    color: #fff !important;
+    background-color: green !important;
+}
+
+.delete-button {
+    color: #fff !important;
+    background-color: red !important;
+}
+
+.car-wrapper {
+    padding: 0px 16px 16px 16px;
+}
