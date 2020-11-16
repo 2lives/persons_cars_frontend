@@ -9,12 +9,16 @@ interface ICarTileProps {
 }
 
 export const CarsTile = ({car:{year, make, model, price}}: ICarTileProps) => {
-    console.log(year, make, model, price, 'CARSzz')
     return (
         <div className="cars-tile-wrapper">
-            <Typography variant="subtitle1">
-               {year} {make} {model}
-            </Typography>
+            <div className="text-wrapper">
+                <Typography variant="subtitle1">
+                    {year} {make} {model}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                    ${price}
+                </Typography>
+            </div>
             <div className="cars-actions-wrapper">
                 <Button className="edit-button">Edit</Button>
                 <Button className="delete-button">Delete</Button>

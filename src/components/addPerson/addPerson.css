@@ -10,4 +10,5 @@
 .add-person-button {
     color: white !important;
     background-color: skyblue !important;
+    width: 110px;
 }

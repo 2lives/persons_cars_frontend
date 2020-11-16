@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { ThunkAction } from 'redux-thunk'
 import { RootState } from '..'
-import { PersonsAction, IPerson, PERSONS_LOADING, PERSONS_FAIL, PERSONS_SUCCESS } from '../types'
+import { PersonsAction, PERSONS_LOADING, PERSONS_FAIL, PERSONS_SUCCESS } from '../types'
 
 const getPersonsSuccess = (persons: any) => ({
     type: PERSONS_SUCCESS,
@@ -13,7 +13,6 @@ export const getPersons = (): ThunkAction<void, RootState, null, PersonsAction> 
         console.log(';in here')
         try {
             const res = await axios.get('/api/v1/person')
-            console.log(res, 'rezzzzz')
             dispatch({
                 type: PERSONS_SUCCESS,
                 payload: res.data

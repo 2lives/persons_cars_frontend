@@ -1,0 +1,9 @@
+.add-car-button {
+    color: white !important;
+    background-color: skyblue !important;
+    width: 110px;
+}
+
+.owner-select {
+    width: 25ch
+}

@@ -2,20 +2,13 @@ import React, { Component } from 'react'
 import { getPersons } from '../store/actions/personsActions'
 import { connect } from 'react-redux'
 import { RootState } from '../store'
-import { IPerson } from '../store/types'
 import { store } from '../store'
-import { PersonsTile } from './personsTile/personsTile'
+import PersonsTile from './personsTile/personsTile'
+import { personsProps } from '../store/types'
 
-type personsProps = {
-    persons: {
-        data: IPerson[]
-        loading: boolean
-    }
-}
 class PersonsList extends Component<personsProps, {}> {
     componentWillMount() {
         store.dispatch(getPersons() as any)
-        console.log(this.props, 'PERSONSzzzz')
     }
     render() {
         return(

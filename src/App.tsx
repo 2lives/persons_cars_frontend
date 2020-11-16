@@ -3,6 +3,7 @@ import './App.css';
 
 import PersonsList from './components/personsList'
 import AddPerson from './components/addPerson/addPerson'
+import AddCar from './components/addCar/addCar'
 
 
 const App: FC = () => {
@@ -11,6 +12,7 @@ const App: FC = () => {
       <div className="app-container">
         <h1>People and their Cars</h1>
         <AddPerson />
+        <AddCar />
         <PersonsList />
       </div>
     </div>

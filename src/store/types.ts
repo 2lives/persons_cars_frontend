@@ -3,6 +3,7 @@ export const PERSONS_FAIL = 'PERSONS_FAIL'
 export const PERSONS_LOADING = 'PERSONS_LOADING'
 
 export interface ICar {
+    id: number
     year: number
     make: string
     model: string
@@ -10,6 +11,7 @@ export interface ICar {
 }
 
 export interface IPerson {
+    id?: number
     first_name: string
     last_name: string
     email: string
@@ -31,6 +33,13 @@ interface PersonsLoadingAction {
 }
 interface PersonsFailAction {
     type: typeof PERSONS_FAIL
+}
+
+export type personsProps = {
+    persons: {
+        data: IPerson[]
+        loading: boolean
+    }
 }
 
 export type PersonsAction = GetPersonsAction | PersonsLoadingAction | PersonsFailAction
