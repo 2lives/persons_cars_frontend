@@ -23,7 +23,6 @@ export default class AddPerson extends Component {
     }
 
     submitAddPerson = async () => {
-        console.log('like why isnt this getting called?')
         if (
             !(this.email.current as HTMLInputElement).value.length || 
             !(this.first_name.current as HTMLInputElement).value.length || 
@@ -75,6 +74,7 @@ export default class AddPerson extends Component {
                         label="Email" 
                         inputRef={this.email}
                         onChange={this.handleChange('email')}
+                        type="email"
                         variant="outlined"
                     />
                 </div>

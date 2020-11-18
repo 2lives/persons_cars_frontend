@@ -9,7 +9,7 @@ import { IPerson, personsProps } from '../../store/types'
 
 import axios from 'axios'
 import { store } from '../../store'
-import { getPersons } from '../../store/actions/personsActions'
+import { addCar } from '../../store/actions/personsActions'
 
 class AddCar extends Component<personsProps, {}> {
     users: IPerson[] | null = null
@@ -19,23 +19,19 @@ class AddCar extends Component<personsProps, {}> {
     price = React.createRef<HTMLDivElement>()
     owner = React.createRef<HTMLDivElement>()
 
-    componentDidMount() {
-        // this.users = store.dispatch(getPersons() as any)
-        console.log(this.props.persons.data, 'USERS')
-    }
-
     handleChange = (field: string) => (evt: React.ChangeEvent<HTMLInputElement>) => {
         (this as any)[field].current.value = evt.target.value
     }
+
+    clearInputs = () => {
+        (this.year.current as HTMLInputElement).value = '';
+        (this.make.current as HTMLInputElement).value = '';
+        (this.model.current as HTMLInputElement).value = '';
+        (this.price.current as HTMLInputElement).value = '';
+        (this.owner.current as HTMLInputElement).value = '';
+    }
+
     submitAddCar = async () => {
-            // if (
-            //     !(this.email.current as HTMLInputElement).value.length || 
-            //     !(this.first_name.current as HTMLInputElement).value.length || 
-            //     !(this.last_name.current as HTMLInputElement).value.length
-            // ) {
-            //     alert('Error: To create a person, all fields must be filled')
-            //     return
-            // }
             try {
                 await axios.post(
                     '/api/v1/car',
@@ -49,12 +45,11 @@ class AddCar extends Component<personsProps, {}> {
                         }
                     }
                 )
-                .then(() => {
-                    store.dispatch(getPersons() as any)
+                .then((res) => {
+                    store.dispatch(addCar(res.data) as any)
                 });
     
-                // this.clearInputs()
-    
+                this.clearInputs()
             }
             catch(e) {
                 console.error(e)

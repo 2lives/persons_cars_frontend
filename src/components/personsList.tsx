@@ -13,7 +13,7 @@ class PersonsList extends Component<personsProps, {}> {
     render() {
         return(
             <div>{this.props.persons.data ? this.props.persons.data.map((person) => {
-                return <PersonsTile key={person.email} person={person} />
+                return <PersonsTile key={person.email + person.first_name + person.last_name} person={person} />
             }) : ''}</div>
         )
     }
