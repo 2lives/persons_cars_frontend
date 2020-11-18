@@ -19,6 +19,7 @@ import { deletePerson, updatePerson } from '../../store/actions/personsActions'
 interface IPersonTileProps {
     person: IPerson
     openDialog?: boolean
+    openConfirmationDialog?: boolean
 }
 
 export default class PersonsTile extends Component<{person: IPerson}, IPersonTileProps> {
@@ -30,7 +31,8 @@ export default class PersonsTile extends Component<{person: IPerson}, IPersonTil
         super(props);
         this.state = {
             person: this.props.person,
-            openDialog: false
+            openDialog: false,
+            openConfirmationDialog: false
         }
     }
 
@@ -78,6 +80,12 @@ export default class PersonsTile extends Component<{person: IPerson}, IPersonTil
     handleCloseDialog() {
         this.setState({ openDialog: false })
     }
+    handleCloseConfirmationDialog() {
+        this.setState({ openConfirmationDialog: false })
+    }
+    handleOpenConfirmationDialog() {
+        this.setState({ openConfirmationDialog: true })
+    }
 
     render() {
         return (
@@ -93,7 +101,7 @@ export default class PersonsTile extends Component<{person: IPerson}, IPersonTil
                     </CardContent>
                     <CardActions>
                         <Button className="edit-button" onClick={() => this.handleOpenDialog()}>Edit</Button>
-                        <Button className="delete-button" onClick={() => {this.deletePerson(this.state.person.id as number)}}>Delete</Button>
+                        <Button className="delete-button" onClick={() => {this.handleOpenConfirmationDialog()}}>Delete</Button>
                     </CardActions>
                     <Dialog open={this.state.openDialog || false} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">Update Person: {this.state.person.first_name} {this.state.person.last_name}</DialogTitle>
@@ -133,6 +141,24 @@ export default class PersonsTile extends Component<{person: IPerson}, IPersonTil
                         </Button>
                         </DialogActions>
                     </Dialog>
+
+                    <Dialog open={this.state.openConfirmationDialog || false} aria-labelledby="form-dialog-title">
+                        <DialogContent>
+                            <Typography>
+                                Are you sure you want to delete {this.state.person.first_name} {this.state.person.last_name}?
+                            </Typography>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button color="primary" onClick={() => this.handleCloseConfirmationDialog()}>
+                                Cancel
+                            </Button>
+                            <Button color="primary" onClick={() => {this.deletePerson(this.state.person.id as number)}}>
+                                Yes
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+
+
                 </div>
                 {this.state.person.cars && this.state.person.cars.length > 0 && 
                     <div className="car-wrapper">

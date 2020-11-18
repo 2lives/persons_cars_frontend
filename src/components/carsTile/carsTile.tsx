@@ -14,7 +14,8 @@ import { deleteCar, updateCar } from '../../store/actions/personsActions'
 
 interface ICarTileProps {
     car: ICar
-    openDialog: boolean
+    openDialog?: boolean
+    openConfirmationDialog?: boolean
 }
 
 
@@ -28,7 +29,8 @@ export default class CarsTile extends Component<{car: ICar}, ICarTileProps> {
         super(props);
         this.state = {
             car: this.props.car,
-            openDialog: false
+            openDialog: false,
+            openConfirmationDialog: false
         }
     }
     async deleteCar () {
@@ -84,6 +86,14 @@ export default class CarsTile extends Component<{car: ICar}, ICarTileProps> {
         this.setState({ openDialog: false })
     }
 
+    handleCloseConfirmationDialog() {
+        this.setState({ openConfirmationDialog: false })
+    }
+
+    handleOpenConfirmationDialog() {
+        this.setState({ openConfirmationDialog: true })
+    }
+
     render() {
         return (
             <div className="cars-tile-wrapper">
@@ -97,7 +107,7 @@ export default class CarsTile extends Component<{car: ICar}, ICarTileProps> {
                 </div>
                 <div className="cars-actions-wrapper">
                     <Button className="edit-button" onClick={() => this.handleOpenDialog()}>Edit</Button>
-                    <Button className="delete-button" onClick={() => {this.deleteCar()}}>Delete</Button>
+                    <Button className="delete-button" onClick={() => {this.handleOpenConfirmationDialog()}}>Delete</Button>
                 </div>
                 <Dialog open={this.state.openDialog || false} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">Update Car: {this.state.car.year} {this.state.car.make} {this.state.car.model}</DialogTitle>
@@ -142,6 +152,21 @@ export default class CarsTile extends Component<{car: ICar}, ICarTileProps> {
                         <Button color="primary" onClick={() => this.updateCar()}>
                             Update
                         </Button>
+                        </DialogActions>
+                    </Dialog>
+                    <Dialog open={this.state.openConfirmationDialog || false} aria-labelledby="form-dialog-title">
+                        <DialogContent>
+                            <Typography>
+                                Are you sure you want to delete {this.state.car.year} {this.state.car.make} {this.state.car.model}?
+                            </Typography>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button color="primary" onClick={() => this.handleCloseConfirmationDialog()}>
+                                Cancel
+                            </Button>
+                            <Button color="primary" onClick={() => {this.deleteCar()}}>
+                                Yes
+                            </Button>
                         </DialogActions>
                     </Dialog>
             </div>
